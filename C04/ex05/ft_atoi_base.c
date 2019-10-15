@@ -23,6 +23,20 @@ int		ft_check_base(char *base)
 	return (len);
 }
 
+int		ft_is_base(char c, char *base)
+{
+	int i;
+
+	i = 0;
+	while (base[i] != '\0')
+	{
+		if (c == base[i])
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int		ft_convert_base(char *str, char *base)
 {
 	int i;
@@ -32,7 +46,7 @@ int		ft_convert_base(char *str, char *base)
 	i = 0;
 	j = 0;
 	nbr = 0;
-	while (str[i] != '\0')
+	while (str[i] != '\0' && ft_is_base(str[i], base) == 0)
 	{
 		while (base[j] != '\0')
 		{
@@ -46,45 +60,24 @@ int		ft_convert_base(char *str, char *base)
 	return (nbr);
 }
 
-int		ft_is_negative(char *str)
-{
-	int i;
-	int count;
-
-	i = 0;
-	count = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] == '-')
-			count++;
-		i++;
-	}
-	return (count);
-}
-
 int		ft_atoi_base(char *str, char *base)
 {
+	int count;
 	int size;
-	int nbr;
 
+	count= 0;
 	if ((size = ft_check_base(base)) == 1)
 		return (0);
-	nbr = ft_convert_base(str, base);
-	if (ft_is_negative(str) % 2 == 1)
-		return (nbr * -1);
+	while ((str[0] >= 9 && str[0] <= 13) || (str[0] == 32))
+		str++;
+	while (str[0] == '+' || str[0] == '-')
+	{
+		if (str[0] == '-')
+			count++;
+		str++;
+	}
+	if (count % 2 == 1)
+		return (ft_convert_base(str, base) * -1);
 	else
-		return (nbr);
-}
-
-#include <stdio.h>
-
-int		main(void)
-{
-	char *str;
-	char *base;
-
-	str = "-wxv-wfghwx   -ire";
-	base = "azertyuiop";
-	printf("%d\n", ft_atoi_base(str, base));
-	return (0);
+		return (ft_convert_base(str, base));
 }
