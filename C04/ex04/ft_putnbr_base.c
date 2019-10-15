@@ -37,7 +37,10 @@ void	ft_putnbr_base(int nbr, char *base)
 	if ((size = ft_check_base(base)) == 1)
 		return ;
 	if (nbr < 0)
+	{
 		nbr = -nbr;
+		ft_putchar('-');
+	}
 	if (nbr > size)
 	{
 		ft_putnbr_base(nbr / size, base);
@@ -45,4 +48,10 @@ void	ft_putnbr_base(int nbr, char *base)
 	}
 	else
 		ft_putchar(base[nbr]);
+}
+
+int		main(void)
+{
+	ft_putnbr_base(732, "azertyuiop");
+	return (0);
 }
