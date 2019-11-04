@@ -1,4 +1,4 @@
-#include "rush01.c"
+#include "rush00.c"
 
 int		main(void)
 {
