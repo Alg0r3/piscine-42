@@ -13,13 +13,19 @@ void	rush(int x, int y)
 	{	
 		while (i <= x)
 		{
-			if ((i == 1 || i == x) && (j == 1 || j == y))
-				ft_putchar('o');
+			if (i == 1  && j == 1)
+				ft_putchar('/');
+			else if (i == x && j == 1)
+				ft_putchar('\\');
+			else if (i == 1 && j == y)
+				ft_putchar('\\');
+			else if (i == x && j == y)
+				ft_putchar('/');
 			else if ((i != 1 || i != x) && (j == 1 || j == y))
-				ft_putchar('-');
+				ft_putchar('*');
 			else if ((i == 1 || i == x) && (j != 1 || j != y))
-				ft_putchar('|');
-			else
+				ft_putchar('*');
+			else			
 				ft_putchar(' ');
 			i++;
 		}

@@ -1,7 +1,7 @@
-#include "rush00.c"
+#include "rush01.c"
 
 int		main(void)
 {
-	rush(7, 4);
+	rush(4, 4);
 	return (0);
 }
